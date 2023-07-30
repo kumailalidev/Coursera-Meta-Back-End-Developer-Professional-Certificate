@@ -1,0 +1,80 @@
+-- show schemas
+SHOW SCHEMAS;
+
+-- creating college_enrollment database
+CREATE DATABASE college_enrollment;
+
+-- show databases
+SHOW SCHEMAS;
+
+-- selecting college_enrollment database
+USE college_enrollment;
+
+-- create department table
+CREATE TABLE department(
+    DepartmentNumber INT,
+    DepartmentName VARCHAR(100),
+    HeadOfDepartment VARCHAR(100)
+);
+
+-- display department table structure
+SHOW COLUMNS FROM department;
+
+-- create course table
+CREATE TABLE course(
+    CourseID INT,
+    CourseName VARCHAR(100),
+    Credits INT
+);
+
+-- display course table structure
+SHOW COLUMNS FROM course;
+
+-- create student table
+CREATE TABLE Student(
+    StudentID INT,
+    StudentName VARCHAR(100),
+    DateOfBirth DATE
+);
+
+-- display Student table structure
+SHOW COLUMNS FROM Student;
+
+-- display tables
+SHOW TABLES;
+
+/*
+    adding DepartmentNumber column to Course table as a foreign key to create a (one-to-many)
+    relatioship between Department and Course table. (one department may offer many courses)
+*/
+
+-- first we need to make DepartmentNumber column a primary key in order to use as foreign key (NOT SURE!)
+ALTER TABLE department ADD( PRIMARY KEY (DepartmentNumber) );
+
+-- we also need to make CourseID column a primary key
+ALTER TABLE course ADD( PRIMARY KEY (CourseID) );
+
+-- adding DepartmentNumber as a foreign key into course table
+ALTER TABLE course ADD(
+    DepartmentNumber INT,
+    FOREIGN KEY (DepartmentNumber) REFERENCES department(DepartmentNumber)
+);
+
+-- show course table structure
+SHOW COLUMNS FROM course;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

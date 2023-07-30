@@ -1,0 +1,57 @@
+-- display all schemas
+SHOW SCHEMAS;
+
+-- creating automobile database
+CREATE DATABASE automobile;
+
+-- use automobile database
+USE automobile;
+
+-- create vehicle tavble
+CREATE TABLE vehicle(
+    vehicleID varchar(10),
+    ownerID VARCHAR(10),
+    plateNumber VARCHAR(10),
+    phoneNumber INT
+); -- edit table and add PRIMEY KEY
+
+-- show tables
+SHOW TABLES;
+
+-- show structure of vehicle table
+SHOW COLUMNS FROM vehicle;
+
+-- alter vehicle table: adding primary key
+ALTER TABLE vehicle ADD( PRIMARY KEY (vehicleID) );
+
+-- show structure of vehicle table
+SHOW COLUMNS FROM vehicle;
+
+-- create owner table
+CREATE TABLE owner(
+    ownerID VARCHAR(10), -- suitable choice for foreign key
+    ownerName VARCHAR(50),
+    ownerAddress VARCHAR(255),
+    PRIMARY KEY (ownerID)
+);
+
+-- show structure of owner table
+SHOW COLUMNS FROM owner;
+
+-- creating relationship (one-to-many) between owner and vehicle table via foreign key
+ALTER TABLE vehicle ADD( FOREIGN KEY (ownerID) REFERENCES owner(ownerID) );
+
+-- show structure of vehicle table
+SHOW COLUMNS FROM vehicle;
+
+/*
+    MUL comes from multiple. If the key is MUL, it means that the related column is
+    permitted to contain the same value in multiple cells of that column. 
+*/
+
+
+
+
+
+
+
